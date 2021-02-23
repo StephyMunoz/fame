@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Ofertante;
 
 class DataController extends Controller
 {
@@ -13,9 +14,8 @@ class DataController extends Controller
      */
     public function index()
     {
-        return view('/');
+        $oferantate = Ofertante::get();
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -34,7 +34,8 @@ class DataController extends Controller
      */
     public function store(Request $request)
     {
-        return "procesar info";
+        //$atributos = request('ruc');
+        //return 'ruc'->request('ruc');
     }
 
     /**
@@ -43,9 +44,10 @@ class DataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($ruc)
     {
-        //
+        //return view($project);
+        return $ruc;
     }
 
     /**
