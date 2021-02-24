@@ -52,13 +52,24 @@ class DataController extends Controller
 
        //$i=home::get('hiddenLabel');
        
+       $v=[0,1];
+    //    if($i<2){
+    //        $i++;
+    //     $viewV=view('home',$i);
+    //    } else {
+    //     return redirect()->route('resultados');
+    //    }
+       //return $viewV;
        //return $i;
        //return redirect()->route('resultados');
 
         //return redirect()->route('home');
         //return redirect()->route('home');
         //return redirect()->route('resultados');
-        
+        // for($i=0;$i<=$v.length;$i++){
+        //     return redirect()->route('home');
+        // }
+        return redirect()->route('resultados');
        
     }
 
