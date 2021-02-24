@@ -9,6 +9,7 @@
     @csrf
    <div>
     <div class="row">
+        
         <div class="col">
             <label name="codigoProyecto">Ingrese el código del proyecto:</label>
             <input name="codigoProyecto" placeholder="Nombre empresa">
@@ -50,7 +51,31 @@
    </div>
    <div>
        <button type="submit" >SIGUIENTE</button>
-       <button>CALCULAR</button>
+       <label name="hiddenLabel" hidden>0</label>
+       <button onclick={handleCalculate()}}>CALCULAR</button>
    </div>
 </form>
+<script>
+    public function handleCalculate() {
+        return redirect()->route('resultados');
+    }
+    
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @endsection

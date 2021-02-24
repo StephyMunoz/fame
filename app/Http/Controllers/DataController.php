@@ -48,13 +48,17 @@ class DataController extends Controller
             'plazoOferta'=>$variable->plazoOferta,
             'vae'=>$variable->vae
 
-            
-            
-            
-            
-            ]);
-        // return redirect()->route('/');
-        //return request();
+        ]);
+
+       //$i=home::get('hiddenLabel');
+       
+       //return $i;
+       //return redirect()->route('resultados');
+
+        //return redirect()->route('home');
+        //return redirect()->route('home');
+        //return redirect()->route('resultados');
+        
        
     }
 
@@ -102,4 +106,5 @@ class DataController extends Controller
     {
         //
     }
+  
 }
