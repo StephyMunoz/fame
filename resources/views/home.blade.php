@@ -5,9 +5,15 @@
 @section('navigation')
     
    <h1>Concurso de adjudicación de contratos</h1>
-   <form method="POST" action="{{route('home')}}">
+   <form method="POST" action="{{route('ofertantes.store')}}">
     @csrf
    <div>
+    <div class="row">
+        <div class="col">
+            <label name="codigoProyecto">Ingrese el código del proyecto:</label>
+            <input name="codigoProyecto" placeholder="Nombre empresa">
+        </div>
+    </div>
     <div class="row">
         <div class="col">
             <label name="nombreEmpresa">Ingrese el nombre de la empresa solicitante:</label>
@@ -16,8 +22,8 @@
     </div>
         <div class="row">
             <div class="col">
-                <label name="ruc">Ingrese el RUC de la empresa solicitante</label>
-                <input name="ruc" placeholder="Ingrese RUC de la empresa">
+                <label name="rucEmpresa">Ingrese el RUC de la empresa solicitante</label>
+                <input name="rucEmpresa" placeholder="Ingrese RUC de la empresa">
             </div>
         </div>
 
@@ -30,8 +36,8 @@
 
         <div class="row">
             <div class="col">
-                <label name="tiempo">Ingrese el tiempo de entrega en meses:</label>
-                <input name="tiempo" placeholder="Ingrese el tiempo de entrega">
+                <label name="plazoOferta">Ingrese el tiempo de entrega en meses:</label>
+                <input name="plazoOferta" placeholder="Ingrese el tiempo de entrega">
             </div>
         </div>
 
@@ -43,8 +49,8 @@
         </div>
    </div>
    <div>
-       <button type="submit" >ACEPTAR</button>
-       <button>REGISTRAR EMPRESA</button>
+       <button type="submit" >SIGUIENTE</button>
+       <button>CALCULAR</button>
    </div>
 </form>
 @endsection

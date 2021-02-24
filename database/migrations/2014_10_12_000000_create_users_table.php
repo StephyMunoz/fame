@@ -14,14 +14,13 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('ofertantes', function (Blueprint $table) {
-            $table->id('rucEmpresa');
+            $table->increments('id');
+            $table->string('codigoProyecto');
+            $table->string('rucEmpresa');
             $table->string('nombreEmpresa');
             $table->double('propuesta');
-            $table->integer('plazoOfertado');
+            $table->integer('plazoOferta');
             $table->double('vae');
-            $table->double('puntajePrecio');
-            $table->double('puntajePlazo');
-            $table->double('totalPuntaje');
             $table->rememberToken();
             $table->timestamps();
         });

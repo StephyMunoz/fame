@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Ofertante;
+use App\Models\Ofertante;
+use Exception;
+use App\Http\Requests\SaveOfertante;
 
 class DataController extends Controller
 {
@@ -34,8 +36,26 @@ class DataController extends Controller
      */
     public function store(Request $request)
     {
-        //$atributos = request('ruc');
-        //return 'ruc'->request('ruc');
+        $variable = request();
+       
+        Ofertante::create([
+            
+            
+            'codigoProyecto'=>$variable->codigoProyecto,
+            'nombreEmpresa'=>$variable->nombreEmpresa,
+            'rucEmpresa'=>$variable->rucEmpresa,
+            'propuesta'=>$variable->propuesta,
+            'plazoOferta'=>$variable->plazoOferta,
+            'vae'=>$variable->vae
+
+            
+            
+            
+            
+            ]);
+        // return redirect()->route('/');
+        //return request();
+       
     }
 
     /**
@@ -44,10 +64,9 @@ class DataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($ruc)
+    public function show()
     {
-        //return view($project);
-        return $ruc;
+        
     }
 
     /**

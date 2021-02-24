@@ -26,4 +26,4 @@ Route::get('resultados',function(){
     return view('resultados');
 })->name('resultados');
 
-Route::post('/', 'App\Http\Controllers\DataController@store');
+Route::post('/', 'App\Http\Controllers\DataController@store')->name('ofertantes.store');
