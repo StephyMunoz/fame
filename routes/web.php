@@ -29,5 +29,6 @@ Route::get('resultados',function(){
 })->name('resultados');
 
 Route::post('/', 'App\Http\Controllers\DataController@store')->name('ofertantes.store');
+//Route::get('resultados','DataController@show')->name('resultados.index');
 //Route::get('/', 'App\Http\Controllers\DataController@show')->name('resultados.show');
 //Route::get('/registro', 'App\Http\Controllers\DataController@show')->name('codConcurso.show');

@@ -25,12 +25,24 @@ class SaveOfertante extends FormRequest
     public function rules()
     {
         return [
-            'codigoProyecto[]'=>'required',
-            'nombreEmpresa[]' =>'required',
-            'rucEmpresa[]'=>'required',
-            'propuesta[]'=>'required',
-            'plazoOfertado[]'=>'required',
-            'vae[]'=>'required'
+            'codigoProyecto'=>'no required',
+            'nombreEmpresa' =>'no required',
+            'rucEmpresa'=>'no required',
+            'propuesta'=>'no required',
+            'plazoOfertado'=>'no required',
+            'vae'=>'no required',
+
+            'nombreEmpresa1' =>'no required',
+            'rucEmpresa1'=>'no required',
+            'propuesta1'=>'no required',
+            'plazoOfertado1'=>'no required',
+            'vae1'=>'no required',
+            
+            'nombreEmpresa2' =>'no required',
+            'rucEmpresa2'=>'no required',
+            'propuesta2'=>'no required',
+            'plazoOfertado2'=>'no required',
+            'vae2'=>'no required'
         ];
     }
 }

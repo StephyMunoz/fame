@@ -4,72 +4,129 @@
     
 @section('navigation')
     
-   <h1>Concurso de adjudicación de contratos</h1>
+   <h3>Concurso de adjudicación de contratos</h3>
    <form method="POST" action="{{route('ofertantes.store')}}">
     @csrf
-   <div>
-    <div class="row">
-        
-        <div class="col">
-            <label name="codigoProyecto">Ingrese el código del proyecto:</label>
-            <input name="codigoProyecto" placeholder="Nombre empresa">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <label name="nombreEmpresa">Ingrese el nombre de la empresa solicitante:</label>
-            <input name="nombreEmpresa" placeholder="Nombre empresa">
-        </div>
-    </div>
-        <div class="row">
-            <div class="col">
-                <label name="rucEmpresa">Ingrese el RUC de la empresa solicitante</label>
-                <input name="rucEmpresa" placeholder="Ingrese RUC de la empresa">
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col">
-                <label name="propuesta">Ingrese la propuesta:</label>
-                <input name="propuesta" placeholder="Ingrese la propuesta">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <label name="plazoOferta">Ingrese el tiempo de entrega en meses:</label>
-                <input name="plazoOferta" placeholder="Ingrese el tiempo de entrega">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <label name="vae">Ingrese VAE:</label>
-                <input name="vae" placeholder="Ingrese el VAE">
-            </div>
-        </div>
-   </div>
-   <div>
-       <button type="submit" >SIGUIENTE</button>
-       <label name="hiddenLabel" hidden>0</label>
-       <button >CALCULAR</button>
-   </div>
-</form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <label name="codigoProyecto" class="form-label">Ingrese el codigo del concurso</label>
+    <input name="codigoProyecto" placerholder="Ingrese codigo del concurso" >
+    
+   <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">
+                    <label name="nombreEmpresa" class="form-label" >Empresa solicitante</label>
+                </th>
+                <th scope="col">
+                    <label name="rucEmpresa" class="form-label" >RUC empresa solicitante</label>
+                </th>
+                <th scope="col">
+                    <label name="propuesta" class="form-label" >Propuesta</label>
+                </th>
+                <th scope="col">
+                    <label name="plazoOferta" class="form-label" >Tiempo de entrega(meses)</label>
+                </td>
+                <th scope="col">
+                    <label name="vae" class="form-label">Ingrese VAE</label>
+                </th>
+            </tr>
+        </thead>
+        <br>
+        <tbody >
+            <tr >
+                <td>
+                    <input name="nombreEmpresa" placeholder="Nombre empresa" class="form-control form-control-sm" >
+                </td>
+                <td>
+                    <input name="rucEmpresa" placeholder="Ingrese RUC de la empresa" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="propuesta" placeholder="Ingrese la propuesta" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="plazoOferta" placeholder="Ingrese el tiempo de entrega" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="vae" placeholder="Ingrese el VAE"class="form-control form-control-sm">
+                </td>
+            </tr>
+            <br>
+            <tr >
+                <td>
+                    <input name="nombreEmpresa1" placeholder="Nombre empresa" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="rucEmpresa1" placeholder="Ingrese RUC de la empresa" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="propuesta1" placeholder="Ingrese la propuesta" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="plazoOferta1" placeholder="Ingrese el tiempo de entrega" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="vae1" placeholder="Ingrese el VAE" class="form-control form-control-sm">
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <td>
+                    <input name="nombreEmpresa2" placeholder="Nombre empresa" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="rucEmpresa2" placeholder="Ingrese RUC de la empresa" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="propuesta2" placeholder="Ingrese la propuesta" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="plazoOferta2" placeholder="Ingrese el tiempo de entrega" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="vae2" placeholder="Ingrese el VAE" class="form-control form-control-sm">
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <td>
+                    <input name="nombreEmpresa2" placeholder="Nombre empresa" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="rucEmpresa2" placeholder="Ingrese RUC de la empresa" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="propuesta2" placeholder="Ingrese la propuesta" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="plazoOferta2" placeholder="Ingrese el tiempo de entrega" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="vae2" placeholder="Ingrese el VAE" class="form-control form-control-sm">
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <td>
+                    <input name="nombreEmpresa2" placeholder="Nombre empresa" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="rucEmpresa2" placeholder="Ingrese RUC de la empresa" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="propuesta2" placeholder="Ingrese la propuesta" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="plazoOferta2" placeholder="Ingrese el tiempo de entrega" class="form-control form-control-sm">
+                </td>
+                <td>
+                    <input name="vae2" placeholder="Ingrese el VAE" class="form-control form-control-sm">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+        <br>
+        <button class="btn btn-primary p-2" type="submit" >CALCULAR</button>
+    </form>
 
 
 

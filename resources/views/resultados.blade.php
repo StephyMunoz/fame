@@ -3,7 +3,7 @@
 @section('title', 'Resultados')
 
 @section('navigation')
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <td>Ofertantes</td>
@@ -20,7 +20,18 @@
             </tr>
         </thead>
         <tbody>
-
+            {{-- <tr> --}}
+                {{-- <ul>
+                    @forelse ($resultados as $resultado)
+                                    
+                                    <li>{{$resultado->propuesta}}</li>
+                                 @empty
+                                    
+                                        <li>hay resultados</li> ;
+                                  
+                                @endforelse
+                            </ul> --}}
+        </tr>
         </tbody>
     </table>
 @endsection

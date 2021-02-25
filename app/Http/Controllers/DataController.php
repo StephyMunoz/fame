@@ -7,6 +7,7 @@ use App\Models\Ofertante;
 use Exception;
 use App\Http\Requests\SaveOfertante;
 
+
 class DataController extends Controller
 {
     /**
@@ -16,7 +17,9 @@ class DataController extends Controller
      */
     public function index()
     {
-        $oferantate = Ofertante::get();
+        //$oferantate = Ofertante::get();
+        
+        //return view('resultados.index')->with('propuesta', $resultados);
     }
     /**
      * Show the form for creating a new resource.
@@ -46,22 +49,34 @@ class DataController extends Controller
             'rucEmpresa'=>$variable->rucEmpresa,
             'propuesta'=>$variable->propuesta,
             'plazoOferta'=>$variable->plazoOferta,
-            'vae'=>$variable->vae
+            'vae'=>$variable->vae,
+
+            'nombreEmpresa'=>$variable->nombreEmpresa1,
+            'rucEmpresa'=>$variable->rucEmpresa1,
+            'propuesta'=>$variable->propuesta1,
+            'plazoOferta'=>$variable->plazoOferta1,
+            'vae'=>$variable->vae1,
+             
+            'nombreEmpresa'=>$variable->nombreEmpresa2,
+            'rucEmpresa'=>$variable->rucEmpresa2,
+            'propuesta'=>$variable->propuesta2,
+            'plazoOferta'=>$variable->plazoOferta2,
+            'vae'=>$variable->vae2
 
         ]);
 
        //$i=home::get('hiddenLabel');
        
-       $v=[0,1];
+    //    $v=[0,1];
        
-       $i=0;
-       if($i<2){
-            $var = redirect()->route('home');
-            $i++;
-       } else {
-        return redirect()->route('resultados');
-       }
-       return $var;
+    //    $i=0;
+    //    if($i<2){
+    //         $var = redirect()->route('home');
+    //         $i++;
+    //    } else {
+    //     return redirect()->route('resultados');
+    //    }
+    //    return $var;
        //return $viewV;
        //return $i;
        //return redirect()->route('resultados');
@@ -72,7 +87,7 @@ class DataController extends Controller
         // for($i=0;$i<=$v.length;$i++){
         //     return redirect()->route('home');
         // }
-        //return redirect()->route('resultados');
+        return redirect()->route('resultados');
        
     }
 
@@ -84,7 +99,7 @@ class DataController extends Controller
      */
     public function show()
     {
-        return redirect()->route('registro');
+        dd($resultados = Ofertante::all());
     }
 
     /**

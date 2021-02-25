@@ -10,4 +10,6 @@
 <input name="codConcurso" placerholder="Ingrese codigo del concurso">
 </div>
 <button >ACEPTAR</button>
+</div>
+
 @endsection

@@ -7,13 +7,14 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="/css/app.css">
     <script src="/js/app.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="/">Ingreso de datos</a></li>
-            <li ><a href="/registro">Registro de empresa</a></li>
-            <li ><a href="/resultados">Resultados</a></li>
+    <nav class="nav">
+        <ul class="nav">
+            <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Ingreso de datos</a></li>
+            <li class="nav-item"><a href="/registro" class="nav-link">Registro de empresa</a></li>
+            <li class="nav-item"><a href="/resultados" class="nav-link">Resultados</a></li>
         </ul>
     </nav>
     @yield('navigation')
