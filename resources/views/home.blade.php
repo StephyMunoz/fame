@@ -52,15 +52,10 @@
    <div>
        <button type="submit" >SIGUIENTE</button>
        <label name="hiddenLabel" hidden>0</label>
-       <button onclick={handleCalculate()}}>CALCULAR</button>
+       <button >CALCULAR</button>
    </div>
 </form>
-<script>
-    public function handleCalculate() {
-        return redirect()->route('resultados');
-    }
-    
-</script>
+
 
 
 

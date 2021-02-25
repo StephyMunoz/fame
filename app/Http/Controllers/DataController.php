@@ -53,12 +53,15 @@ class DataController extends Controller
        //$i=home::get('hiddenLabel');
        
        $v=[0,1];
-    //    if($i<2){
-    //        $i++;
-    //     $viewV=view('home',$i);
-    //    } else {
-    //     return redirect()->route('resultados');
-    //    }
+       
+       $i=0;
+       if($i<2){
+            $var = redirect()->route('home');
+            $i++;
+       } else {
+        return redirect()->route('resultados');
+       }
+       return $var;
        //return $viewV;
        //return $i;
        //return redirect()->route('resultados');
@@ -69,7 +72,7 @@ class DataController extends Controller
         // for($i=0;$i<=$v.length;$i++){
         //     return redirect()->route('home');
         // }
-        return redirect()->route('resultados');
+        //return redirect()->route('resultados');
        
     }
 
@@ -81,7 +84,7 @@ class DataController extends Controller
      */
     public function show()
     {
-        
+        return redirect()->route('registro');
     }
 
     /**
@@ -116,6 +119,10 @@ class DataController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function hello(){
+        return redirect()->route('home');
+        //return "hola";
     }
   
 }
