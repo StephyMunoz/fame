@@ -1,4 +1,4 @@
-@extends('nav');
+@extends('nav')
 
 @section('title', 'Resultados')
 
@@ -20,17 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            {{-- <tr> --}}
-                {{-- <ul>
-                    @forelse ($resultados as $resultado)
-                                    
-                                    <li>{{$resultado->propuesta}}</li>
-                                 @empty
-                                    
-                                        <li>hay resultados</li> ;
-                                  
-                                @endforelse
-                            </ul> --}}
+           
         </tr>
         </tbody>
     </table>
