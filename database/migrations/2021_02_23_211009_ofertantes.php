@@ -13,7 +13,19 @@ class Ofertantes extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('ofertantes', function (Blueprint $table) {
+            $table->increments('id');
+            //$table->unsignedBigInteger('codigoProyecto_id');
+            //$table->foreign('codigoProyecto_id')->references('codigoProyecto')->on('proyectos');
+            //$table->string('codigoProyecto');
+            $table->string('rucEmpresa');
+            $table->string('nombreEmpresa');
+            $table->double('propuesta');
+            $table->integer('plazoOferta');
+            $table->double('vae');
+            $table->rememberToken();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +35,6 @@ class Ofertantes extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('ofertantes');
     }
 }

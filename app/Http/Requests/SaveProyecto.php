@@ -4,8 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-
-class SaveOfertante extends FormRequest
+class SaveProyecto extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,13 +24,9 @@ class SaveOfertante extends FormRequest
     public function rules()
     {
         return [
-            //'codigoProyecto_id'=>'null',
-            'nombreEmpresa' =>'required',
-            'rucEmpresa'=>'required',
-            'propuesta'=>'required',
-            'plazoOfertado'=>'required',
-            'vae'=>'required',
-
+                'codigoProyecto'=>'required',
+                'nombreProyecto' =>'required',
+                'descripcionProyecto'=>'no required'
         ];
     }
 }

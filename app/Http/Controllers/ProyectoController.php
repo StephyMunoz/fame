@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Ofertante;
-use Exception;
-use App\Http\Requests\SaveOfertante;
+use App\Http\Requests\SaveProyecto;
+use App\Models\Proyecto;
 
-
-class DataController extends Controller
+class ProyectoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +15,9 @@ class DataController extends Controller
      */
     public function index()
     {
-        //$oferantate = Ofertante::get();
-        
-        //return view('resultados.index')->with('propuesta', $resultados);
+        //
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -28,7 +25,8 @@ class DataController extends Controller
      */
     public function create()
     {
-        //
+        
+        
     }
 
     /**
@@ -41,22 +39,15 @@ class DataController extends Controller
     {
         $variable = request();
 
-        for($i=0;$i<3;$i++){
-        
-       
-        Ofertante::create([
-            
-            'nombreEmpresa'=>$variable->nombreEmpresa[$i],
-            'rucEmpresa'=>$variable->rucEmpresa[$i],
-            'propuesta'=>$variable->propuesta[$i],
-            'plazoOferta'=>$variable->plazoOferta[$i],
-            'vae'=>$variable->vae[$i]
+        Proyecto::create([
+                      
+            'codigoProyecto'=>$variable->codigoProyecto,
+            'nombreProyecto'=>$variable->nombreProyecto,
+            'descripcionProyecto'=>$variable->descripcionProyecto
 
-            ]);
-   
-        }
-        return redirect()->route('resultados');
-       
+        ]);
+        return redirect()->route('home');
+            //return redirect()->route('home');
     }
 
     /**
@@ -65,14 +56,14 @@ class DataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        dd($resultados = Ofertante::all());
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
-     *;
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -103,9 +94,4 @@ class DataController extends Controller
     {
         //
     }
-    public function hello(){
-        return redirect()->route('home');
-        //return "hola";
-    }
-  
 }

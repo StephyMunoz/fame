@@ -12,8 +12,8 @@
 <body>
     <nav class="nav">
         <ul class="nav">
-            <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Ingreso de datos</a></li>
-            <li class="nav-item"><a href="/registro" class="nav-link">Registro de empresa</a></li>
+            <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Ingreso a concurso</a></li>
+            <li class="nav-item"><a href="/home" class="nav-link">Ingreso datos concursante</a></li>
             <li class="nav-item"><a href="/resultados" class="nav-link">Resultados</a></li>
         </ul>
     </nav>

@@ -17,18 +17,19 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/',function(){
+Route::get('home',function(){
     return view('home');
  })->name('home');
- Route::get('registro',function(){
+ Route::get('/',function(){
     return view('registro');
 })->name('registro');
 
 Route::get('resultados',function(){
     return view('resultados');
 })->name('resultados');
+Route::post('/', 'App\Http\Controllers\ProyectoController@store')->name('proyectos.store');
+Route::post('home', 'App\Http\Controllers\DataController@store')->name('ofertantes.store');
 
-Route::post('/', 'App\Http\Controllers\DataController@store')->name('ofertantes.store');
 //Route::get('resultados','DataController@show')->name('resultados.index');
 //Route::get('/', 'App\Http\Controllers\DataController@show')->name('resultados.show');
 //Route::get('/registro', 'App\Http\Controllers\DataController@show')->name('codConcurso.show');
