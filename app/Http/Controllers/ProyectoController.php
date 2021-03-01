@@ -46,8 +46,7 @@ class ProyectoController extends Controller
             'descripcionProyecto'=>$variable->descripcionProyecto
 
         ]);
-        return redirect()->route('home');
-            //return redirect()->route('home');
+        return view('home');
     }
 
     /**

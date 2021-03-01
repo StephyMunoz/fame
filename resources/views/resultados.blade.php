@@ -20,8 +20,11 @@
             </tr>
         </thead>
         <tbody>
-           
-        </tr>
+            <tr>
+                {{-- @foreach ($priceScore as $item)
+                    <td>{{$item->}}</td>
+                @endforeach --}}
+            </tr>
         </tbody>
     </table>
 @endsection

@@ -55,7 +55,40 @@ class DataController extends Controller
             ]);
    
         }
-        return redirect()->route('resultados');
+        $proposal = $variable['propuesta'];
+        $timeProposal = $variable['plazoOferta'];
+        $timeScore=[];
+        $priceScore=[];
+        $aux=0;
+        $aux2=0;
+        $pivot=$timeProposal[0];
+        $pivotIndex=0;
+        $totalScore=[];
+        
+        for($i=0;$i<3;$i++){
+            
+            if($aux < $proposal[$i]){
+                $aux=$proposal[$i];
+                $aux2=$i;
+            } 
+            if($pivot > $timeProposal[$i]){
+                $pivot=$timeProposal[$i];
+                $pivotIndex=$i;
+            }
+        }
+        for($i=0;$i<3;$i++){
+            $priceScore[$i]=($proposal[$i] * 6)/$proposal[$aux2];
+            $timeScore[$i]=($timeProposal[$pivotIndex]*4)/$timeProposal[$i];
+            for($j=0;$j<3;$j++){
+                if($i==$j){
+                    $totalScore[$j]=$priceScore[$j]+$timeProposal[$j];
+                }
+            }
+            $totalScore[$i]=$priceScore[$i]+$timeScore[$i];
+        }
+        dd($totalScore);
+
+        return redirect()->route('proposal.calculate');
        
     }
 
@@ -103,9 +136,25 @@ class DataController extends Controller
     {
         //
     }
-    public function hello(){
-        return redirect()->route('home');
-        //return "hola";
+    public function calculate(Request $request){
+        return $variable = request();
+        dd($proposal = $variable['propuesta']);
+        $priceScore=[];
+        
+        for($i=0;$i<3;$i++){
+            $aux=0;
+            $aux2=0;
+            if($aux < $proposal[$i]){
+                $aux=$proposal[$i];
+                $aux2=$i;
+            }
+
+            $priceScore[$i]=($proposal[$i] * 6)/$proposal[$aux2];
+            //dd($priceScore[$i]);
+        }
+        //dd($priceScore[]);
+        //return view('resultados');
+    
     }
   
 }

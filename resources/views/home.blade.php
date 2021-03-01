@@ -36,19 +36,19 @@
             <tr >
             <?php $x = 1; for($x; $x <= 3; $x++): ?>
                 <td>
-                    <input name="nombreEmpresa[]" placeholder="Nombre empresa" class="form-control form-control-sm"value="concurso1" >
+                    <input name="nombreEmpresa[]" placeholder="Nombre empresa" class="form-control form-control-sm" >
                 </td>
                 <td>
-                    <input name="rucEmpresa[]" placeholder="Ingrese RUC de la empresa" class="form-control form-control-sm" value="concurso1">
+                    <input name="rucEmpresa[]" placeholder="Ingrese RUC de la empresa" class="form-control form-control-sm" >
                 </td>
                 <td>
-                    <input name="propuesta[]" placeholder="Ingrese la propuesta" class="form-control form-control-sm" value="1701010101">
+                    <input name="propuesta[]" placeholder="Ingrese la propuesta" class="form-control form-control-sm" >
                 </td>
                 <td>
-                    <input name="plazoOferta[]" placeholder="Ingrese el tiempo de entrega" class="form-control form-control-sm"value="25934.2">
+                    <input name="plazoOferta[]" placeholder="Ingrese el tiempo de entrega" class="form-control form-control-sm">
                 </td>
                 <td>
-                    <input name="vae[]" placeholder="Ingrese el VAE"class="form-control form-control-sm"value="0.95">
+                    <input name="vae[]" placeholder="Ingrese el VAE"class="form-control form-control-sm" >
                 </td>
             </tr>
             <br>
