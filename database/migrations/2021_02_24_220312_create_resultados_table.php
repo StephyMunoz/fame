@@ -14,8 +14,12 @@ class CreateResultadosTable extends Migration
     public function up()
     {
         Schema::create('resultados', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('codigoProyecto');
+            $table->string('nombreEmpresa');
+            $table->string('rucEmpresa');
+            $table->double('propuesta');
+            $table->integer('tiempoPropuesta');
             $table->double('puntajePropuesta');
             $table->double('puntajeTiempo');
             $table->double('puntajeVAE');

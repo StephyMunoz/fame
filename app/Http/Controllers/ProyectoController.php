@@ -38,6 +38,7 @@ class ProyectoController extends Controller
     public function store(Request $request)
     {
         $variable = request();
+        $cod = $variable['codigoProyecto'];
 
         Proyecto::create([
                       

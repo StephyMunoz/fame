@@ -3,7 +3,7 @@
 @section('title', 'Resultados')
 
 @section('navigation')
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <td>Ofertantes</td>
@@ -20,11 +20,20 @@
             </tr>
         </thead>
         <tbody>
+            
+            @foreach ($results as $item)
             <tr>
-                {{-- @foreach ($priceScore as $item)
-                    <td>{{$item->}}</td>
-                @endforeach --}}
+                    <td >{{$item->nombreEmpresa}}</td>
+                    <td >{{$item->propuesta}}</td>
+                    <td >{{$item->puntajePropuesta}}</td>
+                    <td >{{$item->tiempoPropuesta}}</td>
+                    <td >{{$item->puntajeTiempo}}</td>
+                    <td >{{$item->puntajeTotal}}</td>
+                    <td >{{$item->puntajeVAE}}</td>
             </tr>
+                @endforeach
+             
+
         </tbody>
     </table>
 @endsection

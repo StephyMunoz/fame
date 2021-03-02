@@ -24,9 +24,12 @@ Route::get('home',function(){
     return view('registro');
 })->name('registro');
 
+
 Route::get('resultados',function(){
     return view('resultados');
 })->name('resultados');
-Route::post('/', 'App\Http\Controllers\ProyectoController@store')->name('proyectos.store');
+
+
+Route::post('registro', 'App\Http\Controllers\ProyectoController@store')->name('proyectos.store');
 Route::post('home', 'App\Http\Controllers\DataController@store')->name('ofertantes.store');
 Route::get('home', 'App\Http\Controllers\DataController@calculate')->name('proposal.calculate');

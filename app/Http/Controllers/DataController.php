@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ofertante;
+use App\Models\Result;
+use App\Models\Proyecto;
 use Exception;
 use App\Http\Requests\SaveOfertante;
-
+use DB;
 
 class DataController extends Controller
 {
@@ -39,13 +41,22 @@ class DataController extends Controller
      */
     public function store(Request $request)
     {
-        $variable = request();
+
+        dd($variable = request());
+        $cod = DB::table('proyectos')->select('codigoProyecto')->orderBy('codigoProyecto', 'DESC')->take(1)->get();
+        dd($number = $request->get('value'));
+
+        foreach ($cod as $o) {
+            $codigo = $o->codigoProyecto;
+        }
+        
 
         for($i=0;$i<3;$i++){
         
-       
+            
         Ofertante::create([
             
+            'codigoProyecto'=>$codigo,
             'nombreEmpresa'=>$variable->nombreEmpresa[$i],
             'rucEmpresa'=>$variable->rucEmpresa[$i],
             'propuesta'=>$variable->propuesta[$i],
@@ -55,6 +66,7 @@ class DataController extends Controller
             ]);
    
         }
+        $ruc=$variable['rucEmpresa'];
         $proposal = $variable['propuesta'];
         $timeProposal = $variable['plazoOferta'];
         $timeScore=[];
@@ -79,16 +91,26 @@ class DataController extends Controller
         for($i=0;$i<3;$i++){
             $priceScore[$i]=($proposal[$i] * 6)/$proposal[$aux2];
             $timeScore[$i]=($timeProposal[$pivotIndex]*4)/$timeProposal[$i];
-            for($j=0;$j<3;$j++){
-                if($i==$j){
-                    $totalScore[$j]=$priceScore[$j]+$timeProposal[$j];
-                }
-            }
             $totalScore[$i]=$priceScore[$i]+$timeScore[$i];
         }
-        dd($totalScore);
 
-        return redirect()->route('proposal.calculate');
+        for($i=0;$i<3;$i++){
+        Result::create([
+            'codigoProyecto'=>$codigo,
+            'nombreEmpresa'=>$variable->nombreEmpresa[$i],
+            'rucEmpresa'=>$variable->rucEmpresa[$i],
+            'puntajePropuesta'=>$priceScore[$i],
+            'puntajeTiempo'=>$timeScore[$i],
+            'puntajeVae'=>$variable->vae[$i],
+            'puntajeTotal'=>$totalScore[$i],
+            'propuesta'=>$variable['propuesta'][$i],
+            'tiempoPropuesta'=>$timeProposal[$i]
+            ]);
+   
+        }
+        $results = DB::table('resultados')->where('codigoProyecto', '=', $codigo)->get();;
+
+        return view('resultados', compact('results'));
        
     }
 
@@ -121,9 +143,10 @@ class DataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $number = $request->get('value');
+        return view('registro', compact('number'));
     }
 
     /**
@@ -135,26 +158,6 @@ class DataController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function calculate(Request $request){
-        return $variable = request();
-        dd($proposal = $variable['propuesta']);
-        $priceScore=[];
-        
-        for($i=0;$i<3;$i++){
-            $aux=0;
-            $aux2=0;
-            if($aux < $proposal[$i]){
-                $aux=$proposal[$i];
-                $aux2=$i;
-            }
-
-            $priceScore[$i]=($proposal[$i] * 6)/$proposal[$aux2];
-            //dd($priceScore[$i]);
-        }
-        //dd($priceScore[]);
-        //return view('resultados');
-    
     }
   
 }
