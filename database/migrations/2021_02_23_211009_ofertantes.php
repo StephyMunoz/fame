@@ -13,6 +13,7 @@ class Ofertantes extends Migration
      */
     public function up()
     {
+        //se crea la tabla ofertantes con los siguientes atributos
         Schema::create('ofertantes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('codigoProyecto');

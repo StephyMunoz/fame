@@ -35,7 +35,7 @@
         <br>
         <tbody >
             <tr >
-            <?php $x = 1; for($x; $x <= 3; $x++): ?>
+            <?php $x = 1; for($x; $x <= $number; $x++): ?>
             
                 <td>
                     <input name="nombreEmpresa[]" placeholder="Nombre empresa" class="form-control form-control-sm" >
@@ -52,6 +52,7 @@
                 <td>
                     <input name="vae[]" placeholder="Ingrese el VAE"class="form-control form-control-sm" value="" >
                 </td>
+                <input type="hidden" value={{$number}} name="number">
             </tr>
             <br>
             <?php endfor; ?>

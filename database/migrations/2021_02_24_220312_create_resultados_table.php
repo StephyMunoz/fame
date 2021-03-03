@@ -13,6 +13,7 @@ class CreateResultadosTable extends Migration
      */
     public function up()
     {
+        //se crea la tabla resultados con los siguientes atributos
         Schema::create('resultados', function (Blueprint $table) {
             $table->increments('id');
             $table->string('codigoProyecto');

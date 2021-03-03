@@ -13,6 +13,7 @@ class CreateProyectosTable extends Migration
      */
     public function up()
     {
+        //se crea la tabla proyectos con los diferentes atributos
         Schema::create('proyectos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('codigoProyecto')->unique();

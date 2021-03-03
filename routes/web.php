@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
+//se crea la vista home, registro y resultados
 Route::get('home',function(){
     return view('home');
  })->name('home');
@@ -29,7 +29,7 @@ Route::get('resultados',function(){
     return view('resultados');
 })->name('resultados');
 
-
+//se define una ruta tipo post para usar el controlador del formulario enviado en la vista registro y home respecticamente
 Route::post('registro', 'App\Http\Controllers\ProyectoController@store')->name('proyectos.store');
 Route::post('home', 'App\Http\Controllers\DataController@store')->name('ofertantes.store');
-Route::get('home', 'App\Http\Controllers\DataController@calculate')->name('proposal.calculate');
+

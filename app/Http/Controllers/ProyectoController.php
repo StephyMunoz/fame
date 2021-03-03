@@ -37,9 +37,12 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
+        //se extrae en la variable la respuesta del formulario de la vista registro
         $variable = request();
-        $cod = $variable['codigoProyecto'];
+        //se extrae el valor del numero de ofertantes seleccionado
+        $number = $variable->get("value");
 
+        //se crea en el modelo Proyecto que posteriormente guardara la tabla proyectos
         Proyecto::create([
                       
             'codigoProyecto'=>$variable->codigoProyecto,
@@ -47,7 +50,8 @@ class ProyectoController extends Controller
             'descripcionProyecto'=>$variable->descripcionProyecto
 
         ]);
-        return view('home');
+        //se retorna a la vista home justo con el numero previamente extraido
+        return view('home', compact('number'));
     }
 
     /**

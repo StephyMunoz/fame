@@ -24,8 +24,9 @@ class SaveOfertante extends FormRequest
      */
     public function rules()
     {
+        //se definen que campos de la tabla de ofertantes seran requeridos, en este caso todos los campos lo son
         return [
-            //'codigoProyecto_id'=>'null',
+            'codigoProyecto'=>'required',
             'nombreEmpresa' =>'required',
             'rucEmpresa'=>'required',
             'propuesta'=>'required',

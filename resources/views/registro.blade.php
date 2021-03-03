@@ -8,12 +8,13 @@
 <form method="POST" action="{{route('proyectos.store')}}" class="mb-3 p-3 lg-3" >
 @csrf
     <div class="mb-3 p-3 lg-3" >
-        <select class="form-select" aria-label="Default select example" name="value" >
+    <label name="value" class="form-label">Ingrese el número de concursantes</label>
+        <select class="form-select" aria-label="Default select example" id="value" name="value" >
             <option selected>Seleccione el numero de ofertantes</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
           </select>
         <label name="codigoProyecto" class="form-label">Ingrese el codigo del concurso</label>
         <input name="codigoProyecto" placerholder="Ingrese codigo del concurso"  class="form-control form-control-sm" >
