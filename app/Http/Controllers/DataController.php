@@ -72,6 +72,7 @@ class DataController extends Controller
         //se definen diferentes variables que ayudaran a los calculos de los resultados del concurso
         $proposal = $variable['propuesta'];
         $timeProposal = $variable['plazoOferta'];
+        $nameProp=$variable['nombreEmpresa'];
         $timeScore=[];
         $priceScore=[];
         $aux=0;
@@ -79,6 +80,7 @@ class DataController extends Controller
         $pivot=$timeProposal[0];
         $pivotIndex=0;
         $totalScore=[];
+        $winner=null;
         
         for($i=0;$i<$number;$i++){
             
@@ -96,10 +98,16 @@ class DataController extends Controller
         //se realiza regla de tres y regla de tres inversa para obtener los puntajes de los anteriores campos
         //se realiza la suma del puntaje total de cada ofertante
         for($i=0;$i<$number;$i++){
+            $win=0;
             $priceScore[$i]=($proposal[$i] * 6)/$proposal[$aux2];
             $timeScore[$i]=($timeProposal[$pivotIndex]*4)/$timeProposal[$i];
             $totalScore[$i]=$priceScore[$i]+$timeScore[$i];
+            if($win<$totalScore[$i]){
+                $win=$totalScore[$i];
+                $winner=$nameProp[$i];
+            }
         }
+       
         //se guarda en la table resultados los valores obtenidos antes
         //ademas se incluyen el codigo del proyecto consultado previamente
         //y el nombre y ruc de la empresa en esta tabla
@@ -120,9 +128,9 @@ class DataController extends Controller
         
         //se extraen los valores de la tabla resultados
         $results = DB::table('resultados')->where('codigoProyecto', '=', $codigo)->get();;
-        
+        //dd($winner);
         //se retornan estos resultados a la vista resultados
-        return view('resultados', compact('results'));
+        return view('resultados', compact('results', 'winner'));
        
     }
 
