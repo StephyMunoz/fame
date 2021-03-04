@@ -24,9 +24,9 @@ class SaveProyecto extends FormRequest
     public function rules()
     {
         return [
-                'codigoProyecto'=>'required',
+                'codigoProyecto'=>['required', 'codigoProyecto', 'unique:proyectos'],
                 'nombreProyecto' =>'required',
-                'descripcionProyecto'=>'no required'
+                'descripcionProyecto'=>'required'
         ];
     }
 }

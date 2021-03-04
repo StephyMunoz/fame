@@ -4,30 +4,27 @@
     
 @section('navigation')
     
-   <h3>Concurso de adjudicación de contratos</h3>
-   <form method="POST" action="{{route('ofertantes.store')}}">
+   
+   <form method="POST" action="{{route('ofertantes.store')}}" >
     @csrf
     
-
-    <!-- <label name="codigoProyecto" class="form-label">Ingrese el codigo del concurso</label>
-    <input name="codigoProyecto_id" placerholder="Ingrese codigo del concurso" value="concurso1"> -->
-    
-   <table class="table">
+   <table class="table table-sm table-bordered table-responsive mt-0" >
+    <h3>Concurso de adjudicación de contratos</h3>
         <thead>
             <tr>
-                <th scope="col">
+                <th>
                     <label name="nombreEmpresa" class="form-label" >Empresa solicitante</label>
                 </th>
-                <th scope="col">
+                <th>
                     <label name="rucEmpresa" class="form-label" >RUC empresa solicitante</label>
                 </th>
-                <th scope="col">
+                <th>
                     <label name="propuesta" class="form-label" >Propuesta</label>
                 </th>
-                <th scope="col">
+                <th>
                     <label name="plazoOferta" class="form-label" >Tiempo de entrega(meses)</label>
                 </td>
-                <th scope="col">
+                <th>
                     <label name="vae" class="form-label">Ingrese VAE</label>
                 </th>
             </tr>
@@ -38,19 +35,19 @@
             <?php $x = 1; for($x; $x <= $number; $x++): ?>
             
                 <td>
-                    <input name="nombreEmpresa[]" placeholder="Nombre empresa" class="form-control form-control-sm" >
+                    <input name="nombreEmpresa[]" placeholder="Nombre empresa" class="form-control form-control-sm" required>
                 </td>
                 <td>
-                    <input name="rucEmpresa[]" placeholder="Ingrese RUC de la empresa" class="form-control form-control-sm" >
+                    <input name="rucEmpresa[]" placeholder="Ingrese RUC de la empresa" class="form-control form-control-sm" required>
                 </td>
                 <td>
-                    <input name="propuesta[]" placeholder="Ingrese la propuesta" class="form-control form-control-sm" >
+                    <input name="propuesta[]" placeholder="Ingrese la propuesta" class="form-control form-control-sm" required>
                 </td>
                 <td>
-                    <input name="plazoOferta[]" placeholder="Ingrese el tiempo de entrega" class="form-control form-control-sm">
+                    <input name="plazoOferta[]" placeholder="Ingrese el tiempo de entrega" class="form-control form-control-sm" required>
                 </td>
                 <td>
-                    <input name="vae[]" placeholder="Ingrese el VAE"class="form-control form-control-sm" value="" >
+                    <input name="vae[]" placeholder="Ingrese el VAE"class="form-control form-control-sm" value="" required>
                 </td>
                 <input type="hidden" value={{$number}} name="number">
             </tr>

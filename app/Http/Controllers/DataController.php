@@ -44,7 +44,9 @@ class DataController extends Controller
         $variable = request();
         //se obtiene el valor extraido del controlador ProyectoController y pasado a la vista home
         $number = $variable->get("number");
+        //variables necesitadas en la ejecucion del codigo
         $codigo;
+        $win=0;
 
         //se realiza una consulta a la tabla proyecto para extraer el codigo del proyecto y se toma el ultimo valor guardadp
         $cod = DB::table('proyectos')->select('codigoProyecto')->orderBy('created_at', 'DESC')->take(1)->get();
@@ -75,7 +77,7 @@ class DataController extends Controller
         $nameProp=$variable['nombreEmpresa'];
         $timeScore=[];
         $priceScore=[];
-        $aux=0;
+        $aux=$proposal[0];
         $aux2=0;
         $pivot=$timeProposal[0];
         $pivotIndex=0;
@@ -85,7 +87,7 @@ class DataController extends Controller
         for($i=0;$i<$number;$i++){
             
             //se define cual es la mejor propuesta de los ofertantes
-            if($aux < $proposal[$i]){
+            if($aux > $proposal[$i]){
                 $aux=$proposal[$i];
                 $aux2=$i;
             } 
@@ -98,16 +100,17 @@ class DataController extends Controller
         //se realiza regla de tres y regla de tres inversa para obtener los puntajes de los anteriores campos
         //se realiza la suma del puntaje total de cada ofertante
         for($i=0;$i<$number;$i++){
-            $win=0;
-            $priceScore[$i]=($proposal[$i] * 6)/$proposal[$aux2];
+            
+            $priceScore[$i]=($proposal[$aux2] * 6)/$proposal[$i];
             $timeScore[$i]=($timeProposal[$pivotIndex]*4)/$timeProposal[$i];
             $totalScore[$i]=$priceScore[$i]+$timeScore[$i];
+            //se busca el ofertante con el mayor puntaje
             if($win<$totalScore[$i]){
                 $win=$totalScore[$i];
                 $winner=$nameProp[$i];
             }
         }
-       
+
         //se guarda en la table resultados los valores obtenidos antes
         //ademas se incluyen el codigo del proyecto consultado previamente
         //y el nombre y ruc de la empresa en esta tabla
