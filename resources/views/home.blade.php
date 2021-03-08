@@ -47,7 +47,7 @@
                     <input name="plazoOferta[]" placeholder="Ingrese el tiempo de entrega" class="form-control form-control-sm" required>
                 </td>
                 <td>
-                    <input name="vae[]" placeholder="Ingrese el VAE"class="form-control form-control-sm" value="" required>
+                    <input name="vae[]" placeholder="Ingrese el VAE (%)"class="form-control form-control-sm" value="0" required>
                 </td>
                 <input type="hidden" value={{$number}} name="number">
             </tr>

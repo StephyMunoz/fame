@@ -9,6 +9,7 @@ use App\Models\Proyecto;
 use Exception;
 use App\Http\Requests\SaveOfertante;
 use DB;
+use Illuminate\Support\Facades\Log;
 
 
 class DataController extends Controller
@@ -75,14 +76,20 @@ class DataController extends Controller
         $proposal = $variable['propuesta'];
         $timeProposal = $variable['plazoOferta'];
         $nameProp=$variable['nombreEmpresa'];
+        $vaeProposal=$variable['vae'];
         $timeScore=[];
         $priceScore=[];
         $aux=$proposal[0];
         $aux2=0;
         $pivot=$timeProposal[0];
         $pivotIndex=0;
-        $totalScore=[];
+        $subtotalScore=[];
         $winner=null;
+        $vaeScore=[];
+        $auxVae = 0;
+        $auxVaeIndex = 0;
+        $totalScoreOverEleven=[];
+        $totalScore=[];
         
         for($i=0;$i<$number;$i++){
             
@@ -96,20 +103,43 @@ class DataController extends Controller
                 $pivot=$timeProposal[$i];
                 $pivotIndex=$i;
             }
+            //se busca el ofertante con mas vae
+            if($auxVae < $vaeProposal[$i]){
+                $auxVae=$vaeProposal[$i];
+                $auxVaeIndex=$i;
+            }
         }
+        
         //se realiza regla de tres y regla de tres inversa para obtener los puntajes de los anteriores campos
         //se realiza la suma del puntaje total de cada ofertante
+        
         for($i=0;$i<$number;$i++){
             
             $priceScore[$i]=($proposal[$aux2] * 6)/$proposal[$i];
             $timeScore[$i]=($timeProposal[$pivotIndex]*4)/$timeProposal[$i];
-            $totalScore[$i]=$priceScore[$i]+$timeScore[$i];
+            $subtotalScore[$i]=$priceScore[$i]+$timeScore[$i];
+            
             //se busca el ofertante con el mayor puntaje
             if($win<$totalScore[$i]){
                 $win=$totalScore[$i];
                 $winner=$nameProp[$i];
             }
+            //se define 1 punto para el ofertante con mas vae, 0 para el resto de ofertantes
+            if($auxVaeIndex==$i){
+                $vaeScore[$i]=1;
+            } else {
+                $vaeScore[$i]=0;
+            }
+            dd($vaeScore);
         }
+        
+
+        for($i=0;$i<$number;$i++){
+            $totalScoreOverEleven[$i]=$subtotalScore[$i]+$vaeScore[$i];
+            $totalScore[$i]=($totalScoreOverEleven[$i]*10)/11;
+            
+        }
+        dd($totalScoreOverEleven);
 
         //se guarda en la table resultados los valores obtenidos antes
         //ademas se incluyen el codigo del proyecto consultado previamente
@@ -121,10 +151,13 @@ class DataController extends Controller
                 'rucEmpresa'=>$variable->rucEmpresa[$i],
                 'puntajePropuesta'=>$priceScore[$i],
                 'puntajeTiempo'=>$timeScore[$i],
-                'puntajeVae'=>$variable->vae[$i],
-                'puntajeTotal'=>$totalScore[$i],
+                'vae'=>$variable->vae[$i],
+                'subtotal'=>$subtotalScore[$i],
                 'propuesta'=>$variable['propuesta'][$i],
-                'tiempoPropuesta'=>$timeProposal[$i]
+                'tiempoPropuesta'=>$timeProposal[$i],
+                'puntajeVAE'=>$vaeScore[$i],
+                'puntajeSumado'=>$totalScoreOverEleven[$i],
+                'puntajeTotal'=>$totalScore[$i]
                 ]);
        
             }

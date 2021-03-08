@@ -23,7 +23,10 @@ class CreateResultadosTable extends Migration
             $table->integer('tiempoPropuesta');
             $table->double('puntajePropuesta');
             $table->double('puntajeTiempo');
+            $table->double('subtotal');
+            $table->double('vae');
             $table->double('puntajeVAE');
+            $table->double('puntajeSumado');
             $table->double('puntajeTotal');
             $table->timestamps();
         });

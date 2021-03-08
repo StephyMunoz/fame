@@ -28,8 +28,12 @@
                     <td >{{$item->puntajePropuesta}}</td>
                     <td >{{$item->tiempoPropuesta}}</td>
                     <td >{{$item->puntajeTiempo}}</td>
-                    <td >{{$item->puntajeTotal}}</td>
+                    <td >{{$item->subtotal}}</td>
+                    <td >{{$item->vae}}</td>
+                    <td >{{$item->subtotal}}</td>
                     <td >{{$item->puntajeVAE}}</td>
+                    <td >{{$item->puntajeSumado}}</td>
+                    <td >{{$item->puntajeTotal}}</td>
             </tr>
                 @endforeach
              

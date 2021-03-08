@@ -20,16 +20,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('home',function(){
     return view('home');
  })->name('home');
+ 
  Route::get('/',function(){
     return view('registro');
 })->name('registro');
-
 
 Route::get('resultados',function(){
     return view('resultados');
 })->name('resultados');
 
+Route::get('vae',function(){
+    return view('vae');
+})->name('vae');
+
 //se define una ruta tipo post para usar el controlador del formulario enviado en la vista registro y home respecticamente
 Route::post('registro', 'App\Http\Controllers\ProyectoController@store')->name('proyectos.store');
 Route::post('home', 'App\Http\Controllers\DataController@store')->name('ofertantes.store');
-
+Route::post('vae', 'App\Http\Controllers\DataController@update')->name('vae.update');
