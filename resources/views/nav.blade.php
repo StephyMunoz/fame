@@ -19,6 +19,7 @@
             <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Ingreso a concurso</a></li>
             <li class="nav-item"><a href="/home" class="nav-link">Ingreso datos concursante</a></li>
             <li class="nav-item"><a href="/resultados" class="nav-link">Resultados</a></li>
+            <li class="nav-item"><a href="/vae" class="nav-link">Ingreso vae por ofertante</a></li>
         </ul>
     </nav>
     @yield('navigation')

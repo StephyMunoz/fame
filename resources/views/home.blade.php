@@ -47,9 +47,14 @@
                     <input name="plazoOferta[]" placeholder="Ingrese el tiempo de entrega" class="form-control form-control-sm" required>
                 </td>
                 <td>
-                    <input name="vae[]" placeholder="Ingrese el VAE (%)"class="form-control form-control-sm" value="0" required>
+                    {{-- <input name="vae[]" placeholder="Ingrese el VAE (%)"class="form-control form-control-sm" value="0" required> --}}
+                    <select name="status[]" onChange="mostrar(this.value);">
+                        <option value="SI">si</option>
+                        <option value="NO">no</option>
+                     </select>
                 </td>
                 <input type="hidden" value={{$number}} name="number">
+                
             </tr>
             <br>
             <?php endfor; ?>

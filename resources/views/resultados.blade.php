@@ -41,6 +41,6 @@
         </tbody>
     </table>
 
-    <h5>La empresa ganadora es: {{$winner}}</h5>
+ 
 
 @endsection
