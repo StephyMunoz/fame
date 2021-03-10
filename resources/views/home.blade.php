@@ -48,9 +48,9 @@
                 </td>
                 <td>
                     {{-- <input name="vae[]" placeholder="Ingrese el VAE (%)"class="form-control form-control-sm" value="0" required> --}}
-                    <select name="status[]" onChange="mostrar(this.value);">
-                        <option value="SI">si</option>
-                        <option value="NO">no</option>
+                    <select name="status[]" >
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
                      </select>
                 </td>
                 <input type="hidden" value={{$number}} name="number">

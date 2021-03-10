@@ -2,13 +2,14 @@
 
 @section('title', 'Ingreso a concurso')
 
+
 @section('navigation')
 
 <form method="POST" action="{{route('proyectos.store')}}" class="row g-3 justify-content-center" >
    
 @csrf
     <div class="col-md-6">
-        <h3>Concurso de adjudicación de contratos</h3>
+        <h3>Proceso de adjudicación de contratos</h3>
         <label name="value" class="form-label">Ingrese el número de concursantes</label>
         <select class="form-select" aria-label="Default select example" id="value" name="value" required >
             
@@ -17,15 +18,15 @@
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-        <label name="codigoProyecto" class="form-label">Ingrese el codigo del concurso</label>
+        <label name="codigoProyecto" class="form-label">Código del proceso</label>
         <input name="codigoProyecto" placerholder="Ingrese codigo del concurso"  class="form-control form-control-sm" required>
-        <label name="nombreProyecto" class="form-label">Ingrese nombre del proyecto</label>
+        <label name="nombreProyecto" class="form-label">Ingrese nombre del proceso</label>
         <input name="nombreProyecto" placerholder="Ingrese nombre del proyecto" class="form-control form-control-sm" value="concurnj" required>
-        <label name="descripcionProyecto" class="form-label">Ingrese descripcion del concurso</label>
+        <label name="descripcionProyecto" class="form-label">Ingrese descripcion del proceso</label>
         <textarea name="descripcionProyecto" placerholder="Ingrese codigo del concurso"  type="text" class="form-control form-control-sm input-group-text "required ></textarea>
 
         <br>
-        <button type="submit" class="btn btn-primary p-2" >ACEPTAR</button>
+        <button type="submit" class="btn btn-primary p-2" value="Enviar" onclick="this.disabled=true; this.value=’Enviando...’; this.form.submit()">ACEPTAR</button>
         
     </div>
 </form>
