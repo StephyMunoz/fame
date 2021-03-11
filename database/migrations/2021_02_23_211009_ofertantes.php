@@ -22,8 +22,6 @@ class Ofertantes extends Migration
             $table->double('propuesta');
             $table->integer('plazoOferta');
             $table->string('vae');
-            $table->double('importacion')->nullable();;
-            $table->double('extranjero')->nullable();;
             $table->rememberToken();
             $table->timestamps();
         });

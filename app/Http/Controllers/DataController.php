@@ -53,16 +53,19 @@ class DataController extends Controller
         //vector auxiliar
         $nameEmp=$variable['nombreEmpresa'];
         $proposal = $variable['propuesta'];
+        $propAux=[];
         $auxVec=[];
         //dd($response);
         for($i=0;$i<$number;$i++){
             if($response[$i] == 'NO'){
+                $propAux[$i]=$proposal[$i];
                 $auxVec[$i]=1;
+                
             } else {
                 $auxVec[$i]=0;
             }
         }
-        
+       
         
         // //se realiza una consulta a la tabla proyecto para extraer el codigo del proyecto y se toma el ultimo valor guardadp
         $cod = DB::table('proyectos')->select('codigoProyecto')->orderBy('created_at', 'DESC')->take(1)->get();
@@ -89,7 +92,7 @@ class DataController extends Controller
    
            
         }
-        return view('vae', compact('auxVec','number', 'codigo', 'nameEmp','proposal'));
+        return view('vae', compact('auxVec','number', 'codigo', 'nameEmp','propAux'));
         // //se definen diferentes variables que ayudaran a los calculos de los resultados del concurso
         // $proposal = $variable['propuesta'];
         // $timeProposal = $variable['plazoOferta'];
