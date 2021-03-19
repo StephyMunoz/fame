@@ -7,6 +7,7 @@
 
 
 <div   class="col-md-12">
+    
     <form  id="formVae" method="post" action="{{route('vae.update')}}" >
         @csrf
         <h1>FORMULARIO DE DECLARACIÓN DE VALOR AGREGADO ECUATORIANO DE LA OFERTA</h1>
@@ -56,8 +57,7 @@
     </form>
 </div>
 <script>
-    
-    //console.log("hello");
+
     document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("formVae").addEventListener('submit', validateVaeValues);
     });

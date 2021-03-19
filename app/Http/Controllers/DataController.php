@@ -10,6 +10,7 @@ use Exception;
 use App\Http\Requests\SaveOfertante;
 use DB;
 use Illuminate\Support\Facades\Log;
+use Barryvdh\DomPDF\Facade as PDF;
 
 
 class DataController extends Controller
@@ -92,103 +93,7 @@ class DataController extends Controller
    
            
         }
-        return view('vae', compact('auxVec','number', 'codigo', 'nameEmp','propAux'));
-        // //se definen diferentes variables que ayudaran a los calculos de los resultados del concurso
-        // $proposal = $variable['propuesta'];
-        // $timeProposal = $variable['plazoOferta'];
-        // $nameProp=$variable['nombreEmpresa'];
-        // $vaeProposal=$variable['vae'];
-        // $timeScore=[];
-        // $priceScore=[];
-        // $aux=$proposal[0];
-        // $aux2=0;
-        // $pivot=$timeProposal[0];
-        // $pivotIndex=0;
-        // $subtotalScore=[];
-        // $winner=null;
-        // $vaeScore=[];
-        // $auxVae = 0;
-        // $auxVaeIndex = 0;
-        // $totalScoreOverEleven=[];
-        // $totalScore=[];
-        
-        // for($i=0;$i<$number;$i++){
-            
-        //     //se define cual es la mejor propuesta de los ofertantes
-        //     if($aux > $proposal[$i]){
-        //         $aux=$proposal[$i];
-        //         $aux2=$i;
-        //     } 
-        //     //se define cual es el menor tiempo de entrega propuesto por los ofertantes
-        //     if($pivot > $timeProposal[$i]){
-        //         $pivot=$timeProposal[$i];
-        //         $pivotIndex=$i;
-        //     }
-        //     //se busca el ofertante con mas vae
-        //     if($auxVae < $vaeProposal[$i]){
-        //         $auxVae=$vaeProposal[$i];
-        //         $auxVaeIndex=$i;
-        //     }
-        // }
-        
-        // //se realiza regla de tres y regla de tres inversa para obtener los puntajes de los anteriores campos
-        // //se realiza la suma del puntaje total de cada ofertante
-        
-        // for($i=0;$i<$number;$i++){
-            
-        //     $priceScore[$i]=($proposal[$aux2] * 6)/$proposal[$i];
-        //     $timeScore[$i]=($timeProposal[$pivotIndex]*4)/$timeProposal[$i];
-        //     $subtotalScore[$i]=$priceScore[$i]+$timeScore[$i];
-            
-        //     //se busca el ofertante con el mayor puntaje
-        //     if($win<$totalScore[$i]){
-        //         $win=$totalScore[$i];
-        //         $winner=$nameProp[$i];
-        //     }
-        //     //se define 1 punto para el ofertante con mas vae, 0 para el resto de ofertantes
-        //     if($auxVaeIndex==$i){
-        //         $vaeScore[$i]=1;
-        //     } else {
-        //         $vaeScore[$i]=0;
-        //     }
-        //     dd($vaeScore);
-        // }
-        
-
-        // for($i=0;$i<$number;$i++){
-        //     $totalScoreOverEleven[$i]=$subtotalScore[$i]+$vaeScore[$i];
-        //     $totalScore[$i]=($totalScoreOverEleven[$i]*10)/11;
-            
-        // }
-        // dd($totalScoreOverEleven);
-
-        // //se guarda en la table resultados los valores obtenidos antes
-        // //ademas se incluyen el codigo del proyecto consultado previamente
-        // //y el nombre y ruc de la empresa en esta tabla
-        // for($i=0;$i<$number;$i++){
-        //     Result::create([
-        //         'codigoProyecto'=>$codigo,
-        //         'nombreEmpresa'=>$variable->nombreEmpresa[$i],
-        //         'rucEmpresa'=>$variable->rucEmpresa[$i],
-        //         'puntajePropuesta'=>$priceScore[$i],
-        //         'puntajeTiempo'=>$timeScore[$i],
-        //         'vae'=>$variable->vae[$i],
-        //         'subtotal'=>$subtotalScore[$i],
-        //         'propuesta'=>$variable['propuesta'][$i],
-        //         'tiempoPropuesta'=>$timeProposal[$i],
-        //         'puntajeVAE'=>$vaeScore[$i],
-        //         'puntajeSumado'=>$totalScoreOverEleven[$i],
-        //         'puntajeTotal'=>$totalScore[$i]
-        //         ]);
-       
-        //     }
-        
-        // //se extraen los valores de la tabla resultados
-        // $results = DB::table('resultados')->where('codigoProyecto', '=', $codigo)->get();;
-        // //dd($winner);
-        // //se retornan estos resultados a la vista resultados
-        // return view('resultados', compact('results', 'winner'));
-       
+        return view('vae', compact('auxVec','number', 'codigo', 'nameEmp','propAux'));       
     }
 
     /**
@@ -284,8 +189,6 @@ class DataController extends Controller
             
             $sumImports[$i]=$import[$i]+$export[$i];
         }
-        //dd($sumImports);
-        //dd($sumImports);
         //se realiza regla de tres y regla de tres inversa para obtener los puntajes de los anteriores campos
         //se realiza la suma del puntaje total de cada ofertante
         $auxVae=0;
@@ -306,15 +209,7 @@ class DataController extends Controller
             if($pivotVae<$vaeValue[$i]){
                 $pivotVae=$vaeValue[$i];
                 $auxVae=$i;
-            }
-            
-            //se busca el ofertante con el mayor puntaje
-            // if($win<$totalScore[$i]){
-            //     $win=$totalScore[$i];
-            //     $winner=$name[$i];
-            // }
-            
-            
+            }           
         }
         
         for($i=0;$i<$number;$i++){
@@ -332,17 +227,6 @@ class DataController extends Controller
             $totalScore[$i]=($totalScoreOverEleven[$i]*10)/11;
             
         }
-
-       // dd($totalScore);
-        
-        //dd($vaeValue);
-
-        // for($i=0;$i<$number;$i++){
-        //     $totalScoreOverEleven[$i]=$subtotalScore[$i]+$vaeScore[$i];
-        //     $totalScore[$i]=($totalScoreOverEleven[$i]*10)/11;
-            
-        // }
-        // dd($totalScoreOverEleven);
 
         //se guarda en la table resultados los valores obtenidos antes
         //ademas se incluyen el codigo del proyecto consultado previamente
@@ -369,7 +253,7 @@ class DataController extends Controller
         $results = DB::table('resultados')->where('codigoProyecto', '=', $codigo)->get();
         //dd($winner);
         //se retornan estos resultados a la vista resultados
-        return view('resultados', compact('results', ));
+        return view('resultados', compact('results', 'codigo'));
 
         //return view('registro');
     }
@@ -383,6 +267,12 @@ class DataController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function printToPdf(Request $request){
+        $codigo=$request->get("codigo");
+        $results = DB::table('resultados')->where('codigoProyecto', '=', $codigo)->get();
+        $pdf= PDF::loadView('pdfResults', compact('results'));
+        return $pdf->download('pdfResults.pdf');
     }
   
 }

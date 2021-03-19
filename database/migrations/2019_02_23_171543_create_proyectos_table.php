@@ -17,8 +17,6 @@ class CreateProyectosTable extends Migration
         Schema::create('proyectos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('codigoProyecto')->unique();
-            $table->string('nombreProyecto');
-            $table->text('descripcionProyecto')->nullable();
             $table->timestamps();
         });
     }

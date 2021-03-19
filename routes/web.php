@@ -37,3 +37,4 @@ Route::get('vae',function(){
 Route::post('registro', 'App\Http\Controllers\ProyectoController@store')->name('proyectos.store');
 Route::post('home', 'App\Http\Controllers\DataController@store')->name('ofertantes.store');
 Route::post('vae', 'App\Http\Controllers\DataController@update')->name('vae.update');
+Route::post('resultados', 'App\Http\Controllers\DataController@printToPdf')->name('export.printToPdf');
