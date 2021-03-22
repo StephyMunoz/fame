@@ -93,7 +93,7 @@ class DataController extends Controller
    
            
         }
-        return view('vae', compact('auxVec','number', 'codigo', 'nameEmp','propAux'));       
+        return view('vae', compact('auxVec','number', 'codigo', 'nameEmp','propAux', 'response'));       
     }
 
     /**
@@ -127,10 +127,13 @@ class DataController extends Controller
      */
     public function update(Request $request)
     {
+        
         $variable=request();
         $import=$variable['valorImportar'];
         $export=$variable['valorExtranjero'];
         $sumImports=[];
+        $auxVec=$variable['response'];
+        //dd($auxVec);
         //dd($export);
         //se definen diferentes variables que ayudaran a los calculos de los resultados del concurso
         $proposal = [];
@@ -173,6 +176,7 @@ class DataController extends Controller
         $aux2=0;
         $pivot=$timeProposal[0];
         $pivotIndex=0;
+        $pivotView=0;
         
         for($i=0;$i<$number;$i++){
             
@@ -188,7 +192,15 @@ class DataController extends Controller
             }
             
             $sumImports[$i]=$import[$i]+$export[$i];
+            if($auxVec[$i]==1){
+                $pivotView++;
+            }
         }
+
+        
+        // if($pivotView)
+        
+
         //se realiza regla de tres y regla de tres inversa para obtener los puntajes de los anteriores campos
         //se realiza la suma del puntaje total de cada ofertante
         $auxVae=0;
@@ -197,64 +209,87 @@ class DataController extends Controller
         
         for($i=0;$i<$number;$i++){
             
-            $priceScore[$i]=($proposal[$aux2] * 6)/$proposal[$i];
-            $timeScore[$i]=($timeProposal[$pivotIndex]*4)/$timeProposal[$i];
-            $subtotalScore[$i]=$priceScore[$i]+$timeScore[$i];
+            $priceScore[$i]=round((($proposal[$aux2] * 6)/$proposal[$i]), 2);
+            $timeScore[$i]=round(($timeProposal[$pivotIndex]*4)/$timeProposal[$i], 2);
+            $subtotalScore[$i]=round($priceScore[$i]+$timeScore[$i], 2);
 
             if($sumImports[$i]==0){
                 $vaeValue[$i]=0;
             } else {
-                $vaeValue[$i]=100-(($sumImports[$i]*100)/$proposal[$i]);
+                $vaeValue[$i]=round(100-(($sumImports[$i]*100)/$proposal[$i]), 2);
             }
             if($pivotVae<$vaeValue[$i]){
                 $pivotVae=$vaeValue[$i];
                 $auxVae=$i;
             }           
         }
-        
-        for($i=0;$i<$number;$i++){
-            if($auxVae==$i && $sumImports[$i]!=0){
-                $extraPoint[$i]=1;
-            } else {
-                $extraPoint[$i]=0;
+        if($pivotView<2){
+            for($i=0;$i<$number;$i++){
+                Result::create([
+                    'codigoProyecto'=>$codigo,
+                    'nombreEmpresa'=>$name[$i],
+                    'rucEmpresa'=>$ruc[$i],
+                    'puntajePropuesta'=>$priceScore[$i],
+                    'puntajeTiempo'=>$timeScore[$i],
+                    'vae'=>$vaeValue[$i],
+                    'subtotal'=>$subtotalScore[$i],
+                    'propuesta'=>$proposal[$i],
+                    'tiempoPropuesta'=>$timeProposal[$i],
+                    'puntajeVAE'=>0,
+                    'puntajeSumado'=>0,
+                    'puntajeTotal'=>0
+                    ]);
+           
+                }
+            $results = DB::table('resultados')->where('codigoProyecto', '=', $codigo)->get();
+            return view('resultsWithout', compact('results','codigo'));
+        } else {
+            for($i=0;$i<$number;$i++){
+                if($auxVae==$i && $sumImports[$i]!=0){
+                    $extraPoint[$i]=1;
+                } else {
+                    $extraPoint[$i]=0;
+                }
+                //$totalScoreOverEleven[$i]=$subtotalScore[$i]+$extraPoint[$i];
+                
             }
-            //$totalScoreOverEleven[$i]=$subtotalScore[$i]+$extraPoint[$i];
+            for($i=0;$i<$number;$i++){
+                
+                $totalScoreOverEleven[$i]=round($subtotalScore[$i]+$extraPoint[$i], 2);
+                $totalScore[$i]=round(($totalScoreOverEleven[$i]*10)/11, 2);
+                
+            }
+    
+            //se guarda en la table resultados los valores obtenidos antes
+            //ademas se incluyen el codigo del proyecto consultado previamente
+            //y el nombre y ruc de la empresa en esta tabla
+            for($i=0;$i<$number;$i++){
+                Result::create([
+                    'codigoProyecto'=>$codigo,
+                    'nombreEmpresa'=>$name[$i],
+                    'rucEmpresa'=>$ruc[$i],
+                    'puntajePropuesta'=>$priceScore[$i],
+                    'puntajeTiempo'=>$timeScore[$i],
+                    'vae'=>$vaeValue[$i],
+                    'subtotal'=>$subtotalScore[$i],
+                    'propuesta'=>$proposal[$i],
+                    'tiempoPropuesta'=>$timeProposal[$i],
+                    'puntajeVAE'=>$extraPoint[$i],
+                    'puntajeSumado'=>$totalScoreOverEleven[$i],
+                    'puntajeTotal'=>$totalScore[$i]
+                    ]);
+           
+                }
             
+            // //se extraen los valores de la tabla resultados
+            $results = DB::table('resultados')->where('codigoProyecto', '=', $codigo)->get();
+            //dd($winner);
+            //se retornan estos resultados a la vista resultados
+            return view('resultados', compact('results', 'codigo', 'auxVec', 'number'));
+    
         }
-        for($i=0;$i<$number;$i++){
-            
-            $totalScoreOverEleven[$i]=$subtotalScore[$i]+$extraPoint[$i];
-            $totalScore[$i]=($totalScoreOverEleven[$i]*10)/11;
-            
-        }
-
-        //se guarda en la table resultados los valores obtenidos antes
-        //ademas se incluyen el codigo del proyecto consultado previamente
-        //y el nombre y ruc de la empresa en esta tabla
-        for($i=0;$i<$number;$i++){
-            Result::create([
-                'codigoProyecto'=>$codigo,
-                'nombreEmpresa'=>$name[$i],
-                'rucEmpresa'=>$ruc[$i],
-                'puntajePropuesta'=>$priceScore[$i],
-                'puntajeTiempo'=>$timeScore[$i],
-                'vae'=>$vaeValue[$i],
-                'subtotal'=>$subtotalScore[$i],
-                'propuesta'=>$proposal[$i],
-                'tiempoPropuesta'=>$timeProposal[$i],
-                'puntajeVAE'=>$extraPoint[$i],
-                'puntajeSumado'=>$totalScoreOverEleven[$i],
-                'puntajeTotal'=>$totalScore[$i]
-                ]);
+        
        
-            }
-        
-        // //se extraen los valores de la tabla resultados
-        $results = DB::table('resultados')->where('codigoProyecto', '=', $codigo)->get();
-        //dd($winner);
-        //se retornan estos resultados a la vista resultados
-        return view('resultados', compact('results', 'codigo'));
-
         //return view('registro');
     }
 
@@ -272,7 +307,13 @@ class DataController extends Controller
         $codigo=$request->get("codigo");
         $results = DB::table('resultados')->where('codigoProyecto', '=', $codigo)->get();
         $pdf= PDF::loadView('pdfResults', compact('results'));
-        return $pdf->download('pdfResults.pdf');
+        return $pdf->download('resultados.pdf');
+    }
+    public function printToPdfWithout(Request $request){
+        $codigo=$request->get("codigo");
+        $results = DB::table('resultados')->where('codigoProyecto', '=', $codigo)->get();
+        $pdf= PDF::loadView('pdfWithout', compact('results'));
+        return $pdf->download('resultados.pdf');
     }
   
 }

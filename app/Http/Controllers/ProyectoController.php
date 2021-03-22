@@ -46,18 +46,24 @@ class ProyectoController extends Controller
         //dd($cod);
         $var=DB::table('proyectos')->where('codigoProyecto', '=', $cod)->get();
         //dd($var);
+        
         if($cod!=$var){
             //se crea en el modelo Proyecto que posteriormente guardara la tabla proyectos
         Proyecto::create([
                       
             'codigoProyecto'=>$variable->codigoProyecto,
-            'nombreProyecto'=>$variable->nombreProyecto,
-            'descripcionProyecto'=>$variable->descripcionProyecto
 
         ]);
         } 
 
-        
+        $rules=[
+            'codigoProyecto'=>'required|unique'
+        ];
+        $messages = [
+            'codigoPoyecto.unique'=>'El código del proyecto debe ser único'
+        ];
+
+        //this->validate($request, $rules, $messages);
         //se retorna a la vista home justo con el numero previamente extraido
         return view('home', compact('number'));
     }

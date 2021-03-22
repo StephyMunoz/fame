@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SaveProyecto extends FormRequest
 {
@@ -29,4 +30,5 @@ class SaveProyecto extends FormRequest
                 'descripcionProyecto'=>'required'
         ];
     }
+    p
 }

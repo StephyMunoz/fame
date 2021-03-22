@@ -10,6 +10,7 @@
 @csrf
     <div class="col-md-6">
         <h3>Proceso de adjudicación de contratos</h3>
+        
         <label name="value" class="form-label">Ingrese el número de oferentes</label>
         <select class="form-select" aria-label="Default select example" id="value" name="value" required >
             

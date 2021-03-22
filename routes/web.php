@@ -32,9 +32,13 @@ Route::get('resultados',function(){
 Route::get('vae',function(){
     return view('vae');
 })->name('vae');
+Route::get('resultsWithout',function(){
+    return view('resultsWithout');
+})->name('resultsWithout');
 
 //se define una ruta tipo post para usar el controlador del formulario enviado en la vista registro y home respecticamente
 Route::post('registro', 'App\Http\Controllers\ProyectoController@store')->name('proyectos.store');
 Route::post('home', 'App\Http\Controllers\DataController@store')->name('ofertantes.store');
 Route::post('vae', 'App\Http\Controllers\DataController@update')->name('vae.update');
 Route::post('resultados', 'App\Http\Controllers\DataController@printToPdf')->name('export.printToPdf');
+Route::post('resultsWithout', 'App\Http\Controllers\DataController@printToPdfWithout')->name('print.without');

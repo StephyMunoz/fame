@@ -3,27 +3,24 @@
 @section('title', 'Resultados')
 
 @section('navigation')
-<form  id="results" method="post" action="{{route('export.printToPdf')}}" >
+<form  id="results" method="post" action="{{route('print.without')}}" >
     @csrf
     <table class="table table-bordered">
         <thead>
             <tr>
-                <td><strong>Oferente</strong></td>
-                <td><strong>Precio</strong></td>
+                <td><strong>Ofertantes</strong></td>
+                <td><strong>Precio Ofertado</strong></td>
                 <td><strong>Puntaje precio (6)</strong></td>
-                <td><strong>Plazo</strong></td>
+                <td><strong>Plazo ofertado</strong></td>
                 <td><strong>Puntaje plazo (4)</strong></td>
                 <td><strong>Puntaje total (/10 puntos)</strong></td>
-                <td><strong>VAE %</strong></td>
-                <td><strong>Puntaje adicional</strong></td>
-                <td><strong>Total puntaje (/11)</strong></td>
-                <td><strong>Ponderación (/10 puntos)</strong></td>
+                <td><strong>Valor VAE %</strong></td>
+
             </tr>
         </thead>
         <tbody>
             
             @foreach ($results as $item)
-            @if($item->vae != 0)
             <tr>
                     <td >{{$item->nombreEmpresa}}</td>
                     <input type="hidden" value={{$item->nombreEmpresa}} name=nombreEmpresa[]>
@@ -39,15 +36,8 @@
                     <input type="hidden" value={{$item->subtotal}} name=subtotal[]>
                     <td >{{$item->vae}}</td>
                     <input type="hidden" value={{$item->vae}} name=vae[]>
-                    <td >{{$item->puntajeVAE}}</td>
-                    <input type="hidden" value={{$item->puntajeVAE}} name=puntajeVAE[]>
-                    <td >{{$item->puntajeSumado}}</td>
-                    <input type="hidden" value={{$item->puntajeSumado}} name=puntajeSumado[]>
-                    <td >{{$item->puntajeTotal}}</td>
-                    <input type="hidden" value={{$item->puntajeTotal}} name=puntajeTotal[]>
                     
             </tr>
-            @endif
                 @endforeach
                 <input type="hidden" value={{$codigo}} name="codigo">
 
@@ -59,6 +49,7 @@
     </button>
 </form>
     <script>
+
         function pfd() {
             var inputFormato = document.getElementById("formato");
             inputFormato.value = "PDF";

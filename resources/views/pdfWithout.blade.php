@@ -8,7 +8,7 @@
     <style>
         @page {
             size: "A4";
-            margin: 3.5cm 1.5cm 3.5cm 1.5cm;
+            margin: 7cm 1.5cm 3.5cm 1.5cm;
         }
         body {
             width: 100% !important;
@@ -27,13 +27,11 @@
             transform: rotate(90deg);
             text-orientation: mixed;
             text-align: justify;
-            margin-right: 100px;
         }
     </style>
 </head>
 <body>
-    <form  id="results" method="post" action="{{route('export.printToPdf')}}" >
-        
+    <form  id="results" method="post" action="{{route('print.without')}}" >
         @csrf
         <h6>Reultado Proceso</h6>
         <table class="table table-bordered">
@@ -45,16 +43,13 @@
                     <td><strong>Plazo</strong></td>
                     <td><strong>Puntaje plazo (4)</strong></td>
                     <td><strong>Puntaje total (/10 puntos)</strong></td>
-                    <td><strong>Valor VAE %</strong></td>
-                    <td><strong>Puntaje adicional VAE</strong></td>
-                    <td><strong>Total puntaje (/11 punots)</strong></td>
-                    <td><strong>Ponderación (/10 puntos)</strong></td>
+                    <td><strong>VAE %</strong></td>
                 </tr>
             </thead>
             <tbody>
                 
                 @foreach ($results as $item)   
-                @if($item->vae != 0)
+                
                 <tr>
                         <td >{{$item->nombreEmpresa}}</td>
                         <td >{{$item->propuesta}}</td>
@@ -63,12 +58,9 @@
                         <td >{{$item->puntajeTiempo}}</td>
                         <td >{{$item->subtotal}}</td>
                         <td >{{$item->vae}}</td>
-                        <td >{{$item->puntajeVAE}}</td>
-                        <td >{{$item->puntajeSumado}}</td>
-                        <td >{{$item->puntajeTotal}}</td>
                         
                 </tr>
-                @endif
+                
                     @endforeach   
             </tbody>
         </table>

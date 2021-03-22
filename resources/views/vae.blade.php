@@ -19,13 +19,13 @@
                 <h6>Oferente {{$x+1}}:   {{$nameEmp[$x]}}</h6>
                 <div class="row">
                     <div class="col-md-6">
-                        <label name="valorImportar" class="form-label ">¿Cuánto va a importar o importó, directamente, para cumplir con esta oferta?</label>
+                        <label name="valorImportar" class="form-label "><strong>a) </strong>¿Cuánto va a importar o importó, directamente, para cumplir con esta oferta?</label>
                         <input id='importValue[]' name="valorImportar[]" placerholder="Ingrese el valora importar"  class="form-control form-control-sm" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label name="valorExtranjero" class="form-label">¿Cuánto va a comprar o compró en el Ecuador, pero que es importado para cumplir con esta oferta?</label>
+                        <label name="valorExtranjero" class="form-label"><strong>b) </strong>¿Cuánto va a comprar o compró en el Ecuador, pero que es importado para cumplir con esta oferta?</label>
                         <input id='exportValue' name="valorExtranjero[]" placerholder="Ingrese el valor a exportar" class="form-control form-control-sm" required>
                     </div>
                 </div>
@@ -42,6 +42,9 @@
         <?php endfor; ?>
         @foreach ($propAux as $item)
             <input type="hidden" value={{$item}} name="proposal[]">
+        @endforeach
+        @foreach ($auxVec as $item)
+            <input type="hidden" value={{$item}} name="response[]">
         @endforeach
         @if($aux==0)
             <h6>Ningún ofertante tiene VAE</h6>
@@ -97,7 +100,7 @@
         for(var i=0;i<imports.length;i++){
             if(aux==0){
                 this.submit();
-                return;
+                
             } else {
                 alert('Los valores de importación no pueden superar a la oferta');
             }

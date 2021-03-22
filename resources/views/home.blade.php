@@ -13,19 +13,19 @@
         <thead>
             <tr>
                 <th>
-                    <label name="nombreEmpresa" class="form-label" >Empresa solicitante</label>
+                    <label name="nombreEmpresa" class="form-label" >Oferente</label>
                 </th>
                 <th>
-                    <label name="rucEmpresa" class="form-label" >RUC empresa solicitante</label>
+                    <label name="rucEmpresa" class="form-label" >N. RUC Oferente</label>
                 </th>
                 <th>
-                    <label name="propuesta" class="form-label" >Propuesta</label>
+                    <label name="propuesta" class="form-label" >Precio</label>
                 </th>
                 <th>
-                    <label name="plazoOferta" class="form-label" >Tiempo de entrega(meses)</label>
+                    <label name="plazoOferta" class="form-label" >Plazo(días)</label>
                 </td>
                 <th>
-                    <label name="vae" class="form-label">Ingrese VAE</label>
+                    <label name="vae" class="form-label">Declaración VAE</label>
                 </th>
             </tr>
         </thead>
@@ -38,7 +38,10 @@
                     <input name="nombreEmpresa[]" placeholder="Nombre empresa" class="form-control form-control-sm" required>
                 </td>
                 <td>
-                    <input name="rucEmpresa[]" placeholder="Ingrese RUC de la empresa" class="form-control form-control-sm" required>
+                    <input name="rucEmpresa[]" placeholder="Ingrese RUC de la empresa" class="form-control form-control-sm" 
+                    pattern="^[0-9]{13}" 
+                    title="El RUC debería contener 13 dígitos"
+                    required>
                 </td>
                 <td>
                     <input name="propuesta[]" placeholder="Ingrese la propuesta" class="form-control form-control-sm" required>
