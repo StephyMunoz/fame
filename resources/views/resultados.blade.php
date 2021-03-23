@@ -54,7 +54,7 @@
         </tbody>
     </table>
 
-    <button id="pdf" type="submit" class="btn btn-danger"><a class="nav-link"  onclick="pfd()">
+    <button type="submit" class="btn btn-danger" ><a class="nav-link"  onclick="pfd()" style="color: white">
         Exportar en PDF<i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
     </button>
 </form>

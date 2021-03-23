@@ -23,14 +23,14 @@
             
         </ul>
     </nav>
-    <img src="/images/logoFame.png" id='logo'> 
+    <img src="/images/FAME.jpg" id='logo'> 
     @yield('navigation')
 </body>
 <style>
     #logo{
-        float: left;
-        /* width: 130px;
-        height: 150px; */
+        float:initial;
+        width: 300px;
+        height: 150px;
         position: relative;
     }
 </style>

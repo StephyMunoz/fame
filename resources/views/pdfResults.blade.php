@@ -20,21 +20,23 @@
             line-height: 1.65;
             -webkit-font-smoothing: antialiased;
             -webkit-text-size-adjust: none;
-            -webkit-transform: rotate(90deg);
-            -moz-transform: rotate(90deg);
-            -o-transform: rotate(90deg);
-            -ms-transform: rotate(90deg);
-            transform: rotate(90deg);
             text-orientation: mixed;
             text-align: justify;
             margin-right: 100px;
         }
+        #logo{
+        /* float:initial; */
+        width: 300px;
+        height: 150px;
+        position: relative;
+    }
     </style>
 </head>
 <body>
     <form  id="results" method="post" action="{{route('export.printToPdf')}}" >
         
         @csrf
+        <img src="../public/images/FAME.jpg" id='logo'> 
         <h6>Reultado Proceso</h6>
         <table class="table table-bordered">
             <thead>

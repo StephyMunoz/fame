@@ -307,13 +307,13 @@ class DataController extends Controller
         $codigo=$request->get("codigo");
         $results = DB::table('resultados')->where('codigoProyecto', '=', $codigo)->get();
         $pdf= PDF::loadView('pdfResults', compact('results'));
-        return $pdf->download('resultados.pdf');
+        return $pdf->setPaper('a4', 'landscape')->download('resultados.pdf');
     }
     public function printToPdfWithout(Request $request){
         $codigo=$request->get("codigo");
         $results = DB::table('resultados')->where('codigoProyecto', '=', $codigo)->get();
         $pdf= PDF::loadView('pdfWithout', compact('results'));
-        return $pdf->download('resultados.pdf');
+        return $pdf->setPaper('a4', 'landscape')->download('resultados.pdf');
     }
   
 }
