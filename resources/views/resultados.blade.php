@@ -24,7 +24,7 @@
             
             @foreach ($results as $item)
             @if($item->vae != 0)
-            <tr>
+                <tr>
                     <td >{{$item->nombreEmpresa}}</td>
                     <input type="hidden" value={{$item->nombreEmpresa}} name=nombreEmpresa[]>
                     <td >{{$item->propuesta}}</td>
@@ -46,7 +46,22 @@
                     <td >{{$item->puntajeTotal}}</td>
                     <input type="hidden" value={{$item->puntajeTotal}} name=puntajeTotal[]>
                     
-            </tr>
+                </tr>
+            @else
+                <tr>
+                    <td >{{$item->nombreEmpresa}}</td>
+                    <input type="hidden" value={{$item->nombreEmpresa}} name=nombreEmpresa[]>
+                    <td >{{$item->propuesta}}</td>
+                    <input type="hidden" value={{$item->propuesta}} name=propuesta[]>
+                    <td >{{$item->puntajePropuesta}}</td>
+                    <input type="hidden" value={{$item->puntajePropuesta}} name=puntajePropuesta[]>
+                    <td >{{$item->tiempoPropuesta}}</td>
+                    <input type="hidden" value={{$item->tiempoPropuesta}} name=tiempoPropuesta[]>
+                    <td >{{$item->puntajeTiempo}}</td>
+                    <input type="hidden" value={{$item->puntajeTiempo}} name=puntajeTiempo[]>
+                    <td >{{$item->subtotal}}</td>
+                    <input type="hidden" value={{$item->subtotal}} name=subtotal[]>
+                </tr>
             @endif
                 @endforeach
                 <input type="hidden" value={{$codigo}} name="codigo">

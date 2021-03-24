@@ -14,6 +14,7 @@
         <label name="value" class="form-label">Ingrese el número de oferentes</label>
         <select class="form-select" aria-label="Default select example" id="value" name="value" required >
             
+            <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>

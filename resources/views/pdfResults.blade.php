@@ -70,6 +70,15 @@
                         <td >{{$item->puntajeTotal}}</td>
                         
                 </tr>
+                @else
+                 <tr>
+                    <td >{{$item->nombreEmpresa}}</td>
+                    <td >{{$item->propuesta}}</td>
+                    <td >{{$item->puntajePropuesta}}</td>
+                    <td >{{$item->tiempoPropuesta}}</td>
+                    <td >{{$item->puntajeTiempo}}</td>
+                    <td >{{$item->subtotal}}</td>
+                </tr>
                 @endif
                     @endforeach   
             </tbody>
