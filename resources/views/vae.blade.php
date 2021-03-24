@@ -10,13 +10,13 @@
     
     <form  id="formVae" method="post" action="{{route('vae.update')}}" >
         @csrf
-        <h1>FORMULARIO DE DECLARACIÓN DE VALOR AGREGADO ECUATORIANO DE LA OFERTA</h1>
+        <h3>FORMULARIO DE DECLARACIÓN DE VALOR AGREGADO ECUATORIANO DE LA OFERTA</h3>
     <?php $aux=0;?>
         <?php $x = 0; for($x; $x < $number; $x++): ?>
 
             @if($auxVec[$x]==1)
-
-                <h6>Oferente {{$x+1}}:   {{$nameEmp[$x]}}</h6>
+                <br>
+                <h4>Oferente {{$x+1}}:   {{$nameEmp[$x]}}</h4>
                 <div class="row">
                     <div class="col-md-6">
                         <label name="valorImportar" class="form-label "><strong>a) </strong>¿Cuánto va a importar o importó, directamente, para cumplir con esta oferta?</label>
