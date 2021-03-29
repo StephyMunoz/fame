@@ -37,7 +37,7 @@
         
         @csrf
         <img src="../public/images/FAME.jpg" id='logo'> 
-        <h4>Reultado Proceso:  {{$codigo}}</h4>
+        <h4>Proceso:  {{$codigo}}</h4>
         <table class="table table-bordered">
             <thead>
                 <tr>
